@@ -96,7 +96,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -104,9 +104,11 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I am Vedant Patel, a mechanical engineering student from Cary, NC, with a passion for creating systems at
+        the confluence of hardware, software, and the world. Currently a student at UNC Charlotte working on
+        my B.S., I have hands-on experience with a variety of fields, including aerospace design, embedded systems,
+        and CAD work with tools such as Fusion 360, Python, and microcontrollers. Be it designing a launch system for
+        a rocket or creating a water analyzer with sensor systems, I strive for precision and curiosity.
       </>
     ),
   },
