@@ -147,7 +147,7 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "Panther Creek High School,
+        name: "Panther Creek High School",
         description: <>Active member of Model United Nations, Technology Student Association, Science National Honor Society, and Science Olympiad.</>,
       },
       {
