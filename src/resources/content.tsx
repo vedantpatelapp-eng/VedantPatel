@@ -25,7 +25,7 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/vedantpatelapp-eng",
     essential: false,
   },
   {
@@ -43,7 +43,7 @@ const social: Social = [
   {
     name: "Threads",
     icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.threads.com/vdntptl",
     essential: false,
   },
   {
