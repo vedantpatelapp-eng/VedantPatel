@@ -147,17 +147,19 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Panther Creek High School,
+        description: <>Active member of Model United Nations, Technology Student Association, Science National Honor Society, and Science Olympiad.</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "University of North Carolina at Charlotte",
+        description: <>Pursuing a Bachelor of Science in Mechanical Engineering, with coursework in Engineering Mechanics and Advanced CAD.
+                       Active member of the Astro-mechanics Club and the American Institute of Aeronautics and Astronautics (AIAA).
+</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
