@@ -13,7 +13,7 @@ const person: Person = {
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: <>My weekly newsletter about creativity and engineering</>,
 };
@@ -26,7 +26,7 @@ const social: Social = [
     name: "GitHub",
     icon: "github",
     link: "https://github.com/vedantpatelapp-eng",
-    essential: false,
+    essential: true,
   },
   {
     name: "LinkedIn",
