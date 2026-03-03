@@ -117,43 +117,27 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "AutoDesk",
+        timeframe: "Feb 2026 - Present",
+        role: "Design and Make Ambassador",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Engaging with students, artists, and professionals to foster a supportive design community. Showcasing
+            projects and mentoring peers on design and manufacturing techniques.
           </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
-        ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+          ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "DPR Construction",
+        timeframe: "2022 - 2024",
+        role: "Mentee",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Developed strong teamwork, communication, and problem-solving skills through hands-on mentorship
+            involving project planning, organization, and real-world construction/engineering workflows.
           </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
+         ],
         images: [],
       },
     ],
