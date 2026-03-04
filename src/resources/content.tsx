@@ -43,7 +43,7 @@ const social: Social = [
   {
     name: "Threads",
     icon: "threads",
-    link: "https://www.threads.com/vdntptl",
+    link: "https://www.threads.com/@vdnt.ptl",
     essential: false,
   },
   {
