@@ -152,7 +152,7 @@ const about: About = {
       },
       {
         name: "University of North Carolina at Charlotte",
-        description: <>Pursuing a Bachelor of Science in Mechanical Engineering.
+        description: <>Pursuing a Bachelor of Science in Mechanical Engineering with a Minor in Mathematics.
                        Active member of the Astro-mechanics Club and the American Institute of Aeronautics and Astronautics (AIAA).
 </>,
       },
