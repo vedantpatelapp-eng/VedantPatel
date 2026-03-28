@@ -11,9 +11,9 @@ import {
   SocialSharingConfig,
   StyleConfig,
 } from "@/types";
-import { home } from "./index";
+import { home, person } from "./index";
 
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
+// IMPORTANT: Replace with your own domain address
 const baseURL: string = "https://thevedantpatel.vercel.app/";
 
 const routes: RoutesConfig = {
@@ -30,68 +30,63 @@ const display: DisplayConfig = {
   themeSwitcher: true,
 };
 
-// Enable password protection on selected routes
-// Set password in the .env file, refer to .env.example
-const protectedRoutes: ProtectedRoutesConfig = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
-};
+const protectedRoutes: ProtectedRoutesConfig = {};
 
-// Import and set font for each variant
-import { Geist } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+import { Space_Mono, Barlow, Barlow_Condensed } from "next/font/google";
 
-const heading = Geist({
+const heading = Barlow_Condensed({
   variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const body = Geist({
+const body = Barlow({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const label = Geist({
+const label = Barlow_Condensed({
   variable: "--font-label",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const code = Geist_Mono({
+const code = Space_Mono({
   variable: "--font-code",
   subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
 const fonts: FontsConfig = {
-  heading: heading,
-  body: body,
-  label: label,
-  code: code,
+  heading,
+  body,
+  label,
+  code,
 };
 
-// default customization applied to the HTML in the main layout.tsx
 const style: StyleConfig = {
-  theme: "system", // dark | light | system
-  neutral: "gray", // sand | gray | slate | mint | rose | dusk | custom
-  brand: "orange", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  solid: "contrast", // color | contrast
-  solidStyle: "plastic", // flat | plastic
-  border: "rounded", // rounded | playful | conservative | sharp
-  surface: "translucent", // filled | translucent
-  transition: "all", // all | micro | macro
-  scaling: "100", // 90 | 95 | 100 | 105 | 110
+  theme: "dark",
+  neutral: "gray",
+  brand: "orange",
+  accent: "red",
+  solid: "contrast",
+  solidStyle: "flat",
+  border: "sharp",
+  surface: "filled",
+  transition: "all",
+  scaling: "100",
 };
 
 const dataStyle: DataStyleConfig = {
-  variant: "gradient", // flat | gradient | outline
-  mode: "categorical", // categorical | divergent | sequential
-  height: 24, // default chart height
-  axis: {
-    stroke: "var(--neutral-alpha-weak)",
-  },
+  variant: "gradient",
+  mode: "categorical",
+  height: 24,
+  axis: { stroke: "var(--neutral-alpha-weak)" },
   tick: {
     fill: "var(--neutral-on-background-weak)",
     fontSize: 11,
@@ -100,12 +95,7 @@ const dataStyle: DataStyleConfig = {
 };
 
 const effects: EffectsConfig = {
-  mask: {
-    cursor: false,
-    x: 50,
-    y: 0,
-    radius: 100,
-  },
+  mask: { cursor: false, x: 50, y: 0, radius: 100 },
   gradient: {
     display: false,
     opacity: 100,
@@ -118,17 +108,17 @@ const effects: EffectsConfig = {
     colorEnd: "page-background",
   },
   dots: {
-    display: true,
+    display: false,
     opacity: 40,
     size: "2",
     color: "brand-background-strong",
   },
   grid: {
-    display: false,
-    opacity: 100,
-    color: "neutral-alpha-medium",
-    width: "0.25rem",
-    height: "0.25rem",
+    display: true,
+    opacity: 30,
+    color: "neutral-alpha-weak",
+    width: "20px",
+    height: "20px",
   },
   lines: {
     display: false,
@@ -143,12 +133,7 @@ const effects: EffectsConfig = {
 const mailchimp: MailchimpConfig = {
   action: "https://url/subscribe/post?parameters",
   effects: {
-    mask: {
-      cursor: true,
-      x: 50,
-      y: 0,
-      radius: 100,
-    },
+    mask: { cursor: true, x: 50, y: 0, radius: 100 },
     gradient: {
       display: true,
       opacity: 90,
@@ -160,47 +145,26 @@ const mailchimp: MailchimpConfig = {
       colorStart: "accent-background-strong",
       colorEnd: "static-transparent",
     },
-    dots: {
-      display: true,
-      opacity: 20,
-      size: "2",
-      color: "brand-on-background-weak",
-    },
-    grid: {
-      display: false,
-      opacity: 100,
-      color: "neutral-alpha-medium",
-      width: "0.25rem",
-      height: "0.25rem",
-    },
-    lines: {
-      display: false,
-      opacity: 100,
-      color: "neutral-alpha-medium",
-      size: "16",
-      thickness: 1,
-      angle: 90,
-    },
+    dots: { display: true, opacity: 20, size: "2", color: "brand-on-background-weak" },
+    grid: { display: false, opacity: 100, color: "neutral-alpha-medium", width: "0.25rem", height: "0.25rem" },
+    lines: { display: false, opacity: 100, color: "neutral-alpha-medium", size: "16", thickness: 1, angle: 90 },
   },
 };
 
-// default schema data
 const schema: SchemaConfig = {
   logo: "",
-  type: "Organization",
-  name: "Once UI",
+  type: "Person",
+  name: person.name,
   description: home.description,
-  email: "lorant@once-ui.com",
+  email: person.email,
 };
 
-// social links
 const sameAs: SameAsConfig = {
   threads: "https://www.threads.com/@vdnt.ptl",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  linkedin: "https://www.linkedin.com/in/vedantptls",
+  discord: "",
 };
 
-// social sharing configuration for blog posts
 const socialSharing: SocialSharingConfig = {
   display: true,
   platforms: {
