@@ -1,194 +1,149 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/blog", label: "Blog" },
+];
 
-import { routes, display, person, about, blog, work, gallery } from "@/resources";
-import { ThemeToggle } from "./ThemeToggle";
-import styles from "./Header.module.scss";
+function Clock({ timeZone }: { timeZone: string }) {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          timeZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }) + " ET"
+      );
+    };
+    update();
+    const id = setInterval(update, 10000);
+    return () => clearInterval(id);
+  }, [timeZone]);
+  return <span>{time}</span>;
+}
 
-type TimeDisplayProps = {
-  timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
-};
-
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
-  const [currentTime, setCurrentTime] = useState("");
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
-      setCurrentTime(timeString);
-    };
+    const saved = localStorage.getItem("vp-theme");
+    const dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDark(dark);
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+  }, []);
 
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeZone, locale]);
-
-  return <>{currentTime}</>;
-};
-
-export default TimeDisplay;
-
-export const Header = () => {
-  const pathname = usePathname() ?? "";
+  const toggle = () => {
+    const next = !isDark;
+    setIsDark(next);
+    const theme = next ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("vp-theme", theme);
+  };
 
   return (
-    <>
-      <Fade s={{ hide: true }} fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade
-        hide
-        s={{ hide: false }}
-        fillWidth
-        position="fixed"
-        bottom="0"
-        to="top"
-        height="80"
-        zIndex={9}
-      />
-      <Row
-        fitHeight
-        className={styles.position}
-        position="sticky"
-        as="header"
-        zIndex={9}
-        fillWidth
-        padding="8"
-        horizontal="center"
-        data-border="rounded"
-        s={{
-          position: "fixed",
-        }}
-      >
-        <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
-        </Row>
-        <Row fillWidth horizontal="center">
-          <Row
-            background="page"
-            border="neutral-alpha-weak"
-            radius="m-4"
-            shadow="l"
-            padding="4"
-            horizontal="center"
-            zIndex={1}
-          >
-            <Row gap="4" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
-              {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
-              )}
-              <Line background="neutral-alpha-medium" vert maxHeight="24" />
-              {routes["/about"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      label={about.label}
-                      selected={pathname === "/about"}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      selected={pathname === "/about"}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/work"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      label={work.label}
-                      selected={pathname.startsWith("/work")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      selected={pathname.startsWith("/work")}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/blog"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="book"
-                      href="/blog"
-                      label={blog.label}
-                      selected={pathname.startsWith("/blog")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="book"
-                      href="/blog"
-                      selected={pathname.startsWith("/blog")}
-                    />
-                  </Row>
-                </>
-              )}
-              {routes["/gallery"] && (
-                <>
-                  <Row s={{ hide: true }}>
-                    <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      label={gallery.label}
-                      selected={pathname.startsWith("/gallery")}
-                    />
-                  </Row>
-                  <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      selected={pathname.startsWith("/gallery")}
-                    />
-                  </Row>
-                </>
-              )}
-              {display.themeSwitcher && (
-                <>
-                  <Line background="neutral-alpha-medium" vert maxHeight="24" />
-                  <ThemeToggle />
-                </>
-              )}
-            </Row>
-          </Row>
-        </Row>
-        <Flex fillWidth horizontal="end" vertical="center">
-          <Flex
-            paddingRight="12"
-            horizontal="end"
-            vertical="center"
-            textVariant="body-default-s"
-            gap="20"
-          >
-            <Flex s={{ hide: true }}>
-              {display.time && <TimeDisplay timeZone={person.location} />}
-            </Flex>
-          </Flex>
-        </Flex>
-      </Row>
-    </>
+    <button
+      onClick={toggle}
+      style={{
+        background: "none",
+        border: "1px solid var(--color-border2)",
+        color: "var(--color-text2)",
+        cursor: "pointer",
+        padding: "5px 10px",
+        fontFamily: "var(--font-mono)",
+        fontSize: "10px",
+        letterSpacing: "0.08em",
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        transition: "border-color 0.2s, color 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-accent)";
+        (e.currentTarget as HTMLButtonElement).style.color = "var(--color-accent)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--color-border2)";
+        (e.currentTarget as HTMLButtonElement).style.color = "var(--color-text2)";
+      }}
+    >
+      <span>{isDark ? "◑" : "◐"}</span>
+      <span>{isDark ? "LIGHT" : "DARK"}</span>
+    </button>
+  );
+}
+
+export const Header = () => {
+  const pathname = usePathname() ?? "/";
+
+  return (
+    <header
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 40px",
+        height: "56px",
+        background: "var(--color-bg)",
+        borderBottom: "1px solid var(--color-border)",
+        transition: "background 0.3s",
+      }}
+    >
+      {/* Logo */}
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--color-text3)", letterSpacing: "0.06em" }}>
+        VP<span style={{ color: "var(--color-accent)" }}>/</span>MECH-ENG
+      </div>
+
+      {/* Nav links */}
+      <nav>
+        <ul style={{ display: "flex", gap: "28px", listStyle: "none", margin: 0, padding: 0, alignItems: "center" }}>
+          {NAV_LINKS.map(({ href, label }) => {
+            const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: active ? "var(--color-text)" : "var(--color-text2)",
+                    textDecoration: "none",
+                    borderBottom: active ? "1.5px solid var(--color-accent)" : "1.5px solid transparent",
+                    paddingBottom: "2px",
+                    transition: "color 0.2s, border-color 0.2s",
+                  }}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      {/* Right: clock + theme toggle */}
+      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: "10px", color: "var(--color-text3)", letterSpacing: "0.06em" }}>
+          <Clock timeZone="America/New_York" />
+        </div>
+        <ThemeToggle />
+      </div>
+    </header>
   );
 };

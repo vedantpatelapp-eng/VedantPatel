@@ -107,8 +107,7 @@ const about: About = {
         I am Vedant Patel, a mechanical engineering student from Cary, NC, with a passion for creating systems at
         the confluence of hardware, software, and the world. Currently a student at UNC Charlotte working on
         my B.S., I have hands-on experience with a variety of fields, including aerospace design, embedded systems,
-        and CAD work with tools such as Fusion 360, Python, and microcontrollers. Be it designing a launch system for
-        a rocket or creating a water analyzer with sensor systems, I strive for precision and curiosity.
+        and CAD work with tools such as Fusion 360, Python, and microcontrollers.
       </>
     ),
   },
