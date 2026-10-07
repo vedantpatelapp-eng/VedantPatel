@@ -1,0 +1,52 @@
+---
+title: "Molecularly Engineered Hybrid Photoresists for Next-Generation Nanolithography"
+publishedAt: "2026-07-24"
+summary: "Summer 2026 research at Brookhaven National Laboratory exploring low-temperature ALD films as hybrid photoresists, where E-beam exposure selectively decomposes the film's carbon/organic components to create patternable resists."
+images:
+  - "/images/projects/project-02/tiox-gpc.jpg"
+  - "/images/projects/project-02/tialox-gpc.jpg"
+  - "/images/projects/project-02/mf312-etch.jpg"
+team:
+  - name: "Vedant Patel"
+    role: "Research Intern"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/vedantptls"
+---
+
+## Overview
+
+This project was completed at Brookhaven National Laboratory (BNL) in Summer 2026 under the supervision of Dr. Chang-Yong Nam and Dr. Nikhil Tiwale. ALD films can function as resists because low-temperature deposition leaves behind carbon/organic components, which E-beam exposure selectively decomposes, making exposed regions insoluble while unexposed regions remain soluble to the developer.
+
+## Motivation
+
+The reason for using ALD instead of spin coating is to create a more uniform resist that is less prone to pattern collapse. In spin coating, the pitch between two patterns can only be so small due to the resolution of the resist. With the push to increase throughput while making smaller and denser chips, ALD can help create thinner, more uniform films compared to spin coating.
+
+## Process
+
+- **Deposit**: Run varying cycles of ALD using the S100 (Cambridge Nanotech Savannah100) at a low chamber temperature (85°C) on samples.
+- **Measure**: Use ellipsometry (Filmsense FS-8) to measure film thickness, create GPC (Growth Per Cycle) charts, and use linear regression to find how many cycles are needed to reach 20nm to 30nm of growth, which is required for the film to develop properly.
+- **Scale up**: Run ALD under the same conditions for the required number of cycles, on quarter wafers or whole wafers to maximize the number of samples available to etch.
+- **Develop**: Etch using MF-312 (5% TMAH) or a different developer, and create etch developer rate graphs, again using linear regression to find the etch rate.
+- **Pattern**: Once a developer is found that etches a certain thin film, pattern with EBL at varying doses.
+
+## Results So Far
+
+**TiOx and TiAlOx at 85°C (0.4s water pulse).** TiOx grew at about 0.0405 nm/cycle, so 500 cycles on a whole wafer reached the desired 20nm. TiAlOx grew at about 0.1055 nm/cycle, so 300 cycles reached the desired 30nm. Etching in MF-312 was unsuccessful for both.
+
+**Shorter water pulses (0.015s and 0.1s).** With no water pulse, TiAl growth was only about 0.0017 nm/cycle, showing that the absence of water affects ALD growth. TiOx with a 0.015s pulse came out at about 0.0106 nm/cycle, which was too low, so I moved to a 0.1s pulse and got about 0.0328 nm/cycle. None of these etched in MF-312.
+
+**Hafnium and zinc compositions at 85°C.** HfOx grew at about 0.1478 nm/cycle, HfZnOx at about 0.1559 nm/cycle, and TiZnOx at about 0.0608 nm/cycle. Etching with MF-312 for 20 minutes was unsuccessful for HfOx and HfZnOx.
+
+**Dilute HCl (0.1%).** I also developed each composition in hydrochloric acid for 30, 60, 90, and 120 seconds and fit the thickness change over time to look for an etch rate.
+
+## Technologies Used
+
+- **Atomic Layer Deposition**: Cambridge Nanotech Savannah100 for low-temperature thin film growth.
+- **Ellipsometry**: Filmsense FS-8 for thickness and n-value measurements.
+- **Electron Beam Lithography (EBL)**: For patterning the films at varying doses.
+- **Developers**: Microposit MF-312 (5% TMAH) and dilute hydrochloric acid.
+- **Data Analysis**: GPC and etch rate charts with linear regression.
+
+## Reference
+
+Ghosh, T., Fritz, E.-C., Balakrishnan, D., Zhang, Z., Vrancken, N., Anand, U., Zhang, H., Loh, N. D., Xu, X., Holsteyns, F., Nijhuis, C. A., and Mirsaidov, U. *ACS Applied Materials & Interfaces* 2022, 14 (4), 5537-5544. DOI: 10.1021/acsami.1c17781
