@@ -76,7 +76,7 @@ const style: StyleConfig = {
   accent: "red",
   solid: "contrast",
   solidStyle: "flat",
-  border: "sharp",
+  border: "conservative",
   surface: "filled",
   transition: "all",
   scaling: "100",
