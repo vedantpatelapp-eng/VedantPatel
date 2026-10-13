@@ -14,7 +14,7 @@ const person: Person = {
 const newsletter: Newsletter = {
   display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>My portfolio about engineering</>,
 };
 
 const social: Social = [
@@ -56,7 +56,7 @@ const home: Home = {
   label: "Home",
   title: `${person.name} — Mechanical Engineer`,
   description: `Portfolio of ${person.name}, a mechanical engineering student at UNC Charlotte passionate about aerospace, embedded systems, and building at the intersection of hardware and software.`,
-  headline: <>Engineering Fueled by Curiosity.</>,
+  headline: <> Vedant's Engineering Portfolio</>,
   featured: {
     display: false,
     title: <>Featured Work</>,
