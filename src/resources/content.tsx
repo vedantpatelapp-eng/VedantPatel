@@ -132,7 +132,7 @@ const about: About = {
       {
         company: "Brookhaven National Laboratory",
         timeframe: "May 2026 – July 2026",
-        role: "Research Intern",
+        role: "Manufacturing Intern",
         achievements: [
           <>
             Researched molecularly engineered hybrid photoresists for
